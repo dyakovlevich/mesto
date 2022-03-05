@@ -27,7 +27,7 @@
       <button type="button" aria-label="Добавить" class="profile__add-button"></button>
     </section>
     
-    <section class="gallery" aria-name="Гелерея">
+    <section class="gallery">
       <ul class="cards">
         <li class="card">
           <img src="./images/karachaevsk.png" alt="Карачаевск" class="card__img">
@@ -67,5 +67,18 @@
     <p class="footer__copyright">© 2022 Дмитрий Яковлевич</p>
   </footer>
   
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form name="profile__edit" class="profile__edit">
+        <input type="text" name="fio" class="popup__input">
+        <input type="text" name="profession" class="popup__input">
+        <button type="submit" class="popup__submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  
+<script src="./js/script.js"></script>
 </body>
 </html>
