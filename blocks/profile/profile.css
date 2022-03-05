@@ -1,0 +1,29 @@
+.profile {
+    margin: 0 19px 36px;
+    display: grid;
+    grid-template-columns: minmax(40px, auto) minmax(auto, max-content) minmax(40px, auto);
+    grid-template-areas:
+      "avatar avatar avatar"
+      ". fio edit"
+      ". profession ."
+      "add add add";
+    align-items: center;
+    justify-items: center;
+}
+
+@media (min-width: 480px) {
+  .profile {
+    grid-template-columns: 150px auto 1fr 80px;
+    grid-template-areas: 
+      "avatar fio edit add"
+      "avatar profession . add";
+    justify-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile {
+    margin: 0 0 50px;
+    grid-template-columns: 150px auto 1fr 150px;
+  }
+}

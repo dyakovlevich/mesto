@@ -1,0 +1,15 @@
+.card {
+  max-width: 100%;
+  display: grid;
+  padding-bottom: 25px;
+  grid-template-columns: 1fr 62px;
+  grid-template-areas:
+    "img img"
+    "title like";
+  align-items: center;
+  justify-items: start;
+  color: black;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}

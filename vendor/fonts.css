@@ -12,7 +12,6 @@
   src: url("./fonts/Inter-Medium.woff2") format("woff2"),
        url("./fonts/Inter-Medium.woff") format("woff");
 }
-
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
