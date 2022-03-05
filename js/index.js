@@ -6,10 +6,10 @@ let popupCloseButton = document.querySelector('.popup__close-button');
 let profileFio = document.querySelector('.profile__fio');
 let profileProfession = document.querySelector('.profile__profession');
 
-let profileFioInput = document.querySelector('.profile__edit input[name=fio]');
-let profileProfessionInput = document.querySelector('.profile__edit input[name=profession');
+let profileFioInput = document.querySelector('.popup__edit input[name=fio]');
+let profileProfessionInput = document.querySelector('.popup__edit input[name=profession');
 
-let profileEditForm = document.querySelector('.profile__edit');
+let profileEditForm = document.querySelector('.popup__edit');
 
 function popupOpen() {
   popup.classList.add('popup_opened');
