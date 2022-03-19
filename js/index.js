@@ -80,6 +80,7 @@ function submitAddCardForm(evt) {
   };  
   insertCard(data);
   closePopup();
+  cardAddForm.reset();
 }
 
 function insertCard(cardObj) {
