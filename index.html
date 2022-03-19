@@ -58,10 +58,22 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form name="popup__edit" class="popup__edit">
-          <input type="text" name="fio" class="popup__input" />
-          <input type="text" name="profession" class="popup__input" />
+        <form name="profile__edit" class="profile__edit">
+          <input type="text" name="fio" class="popup__input" placeholder="ФИО" />
+          <input type="text" name="profession" class="popup__input" placeholder="Профессия" />
           <button type="submit" class="popup__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="popup popup-card">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form name="card__insert" class="card__insert">
+          <input type="text" name="card_name" class="popup__input" placeholder="Название" />
+          <input type="text" name="card_link" class="popup__input" placeholder="Ссылка на картинку" />
+          <button type="submit" class="popup__submit">Создать</button>
         </form>
       </div>
     </div>

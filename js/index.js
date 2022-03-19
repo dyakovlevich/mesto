@@ -25,35 +25,47 @@ const initialCards = [
   },
 ];
 const cardsList = document.querySelector(".cards");
-const popup = document.querySelector(".popup");
-const profileEditButton = document.querySelector(".profile__edit-button");
-const popupCloseButton = document.querySelector(".popup__close-button");
 
+
+const popupProfile = document.querySelector(".popup-profile");
+const profileEditButton = document.querySelector(".profile__edit-button");
 const profileFio = document.querySelector(".profile__fio");
 const profileProfession = document.querySelector(".profile__profession");
+const profileFioInput = document.querySelector(".profile__edit input[name=fio]");
+const profileProfessionInput = document.querySelector(".profile__edit input[name=profession");
+const profileEditForm = document.querySelector(".profile__edit");
 
-const profileFioInput = document.querySelector(".popup__edit input[name=fio]");
-const profileProfessionInput = document.querySelector(
-  ".popup__edit input[name=profession"
-);
-
-const profileEditForm = document.querySelector(".popup__edit");
+const popupAddCard = document.querySelector(".popup-card");
+const cardAddButton = document.querySelector(".profile__add-button");
+const cardAddForm = document.querySelector(".card__insert");
+const cardAddNameInput = document.querySelector(".card__insert input[name=card_name]");
+const cardAddLinkInput = document.querySelector(".card__insert input[name=card_link]");
 
 function openProfilePopup() {
-  popup.classList.add("popup_opened");
+  popupProfile.classList.add("popup_opened");
   profileFioInput.value = profileFio.textContent;
   profileProfessionInput.value = profileProfession.textContent;
 }
 
-function closeProfilePopup() {
-  popup.classList.remove("popup_opened");
+function openAddCardPopup() {
+  popupAddCard.classList.add("popup_opened");
 }
 
-function handleProfileFormSubmit(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   profileFio.textContent = profileFioInput.value.trim();
   profileProfession.textContent = profileProfessionInput.value.trim();
-  closeProfilePopup();
+  closePopup();
+}
+
+function submitAddCardForm(evt) {
+  evt.preventDefault();
+  const data = {
+    name: cardAddNameInput.value,
+    link: cardAddLinkInput.value
+  };  
+  insertCard(data);
+  closePopup();
 }
 
 function insertCard(cardObj) {
@@ -64,15 +76,16 @@ function insertCard(cardObj) {
   card.querySelector(".card__title").textContent = cardObj.name;
   card.querySelector(".card__img").setAttribute("src", cardObj.link);
   card.querySelector(".card__img").setAttribute("alt", cardObj.name);
-  cardsList.append(card);
+  cardsList.prepend(card);
 }
 
 
 
 document.body.addEventListener("click", (event) => {
   const card = event.target.closest(".card");
+  const popup = event.target.closest(".popup");
 
-  if (!card) {
+  if (!card && !popup) {
     return;
   }
 
@@ -80,24 +93,26 @@ document.body.addEventListener("click", (event) => {
     removeCard(card);
   } else if (event.target.classList.contains("card__like")) {
     likeCard(card);
-  }
-  
-  function removeCard(card) {
-    card.remove();
-  }
-  
-  function likeCard(card) {
-    card.querySelector(".card__like").classList.toggle("card__like_active");
+  } else if (event.target.classList.contains("popup__close-button")) {
+    closePopup();
   }
 });
 
+function removeCard(card) {
+  card.remove();
+}
+
+function likeCard(card) {
+  card.querySelector(".card__like").classList.toggle("card__like_active");
+}
+
+function closePopup() {
+  document.querySelectorAll(".popup").forEach((el) => el.classList.remove("popup_opened"));
+}
+
 profileEditButton.addEventListener("click", openProfilePopup);
-profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-popupCloseButton.addEventListener("click", closeProfilePopup);
-popup.addEventListener("click", function (e) {
-  if (e.target === e.currentTarget) {
-    closeProfilePopup();
-  }
-});
+profileEditForm.addEventListener("submit", submitProfileForm);
+cardAddButton.addEventListener("click", openAddCardPopup);
+cardAddForm.addEventListener("submit", submitAddCardForm);
 
 initialCards.map(insertCard);
