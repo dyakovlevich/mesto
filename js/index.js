@@ -31,15 +31,16 @@ const popupProfile = document.querySelector(".popup-profile");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileFio = document.querySelector(".profile__fio");
 const profileProfession = document.querySelector(".profile__profession");
-const profileFioInput = document.querySelector(".profile__edit input[name=fio]");
-const profileProfessionInput = document.querySelector(".profile__edit input[name=profession");
-const profileEditForm = document.querySelector(".profile__edit");
+const profileEditForm = document.querySelector(".popup__profile-edit");
+const profileFioInput = document.querySelector(".popup__profile-edit input[name=fio]");
+const profileProfessionInput = document.querySelector(".popup__profile-edit input[name=profession");
+
 
 const popupAddCard = document.querySelector(".popup-card");
 const cardAddButton = document.querySelector(".profile__add-button");
-const cardAddForm = document.querySelector(".card__insert");
-const cardAddNameInput = document.querySelector(".card__insert input[name=card_name]");
-const cardAddLinkInput = document.querySelector(".card__insert input[name=card_link]");
+const cardAddForm = document.querySelector(".popup__card-insert");
+const cardAddNameInput = document.querySelector(".popup__card-insert input[name=card_name]");
+const cardAddLinkInput = document.querySelector(".popup__card-insert input[name=card_link]");
 
 const popupImg = document.querySelector(".popup-image");
 const imgLink = document.querySelector(".popup__img");
