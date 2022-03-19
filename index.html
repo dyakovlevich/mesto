@@ -7,7 +7,7 @@
     <title>Mesto</title>
     <meta
       name="description"
-      content="Проектная работа 4 на Яндекс Практикуме"
+      content="Проектная работа 5 на Яндекс Практикуме"
     />
     <meta name="keywords" content="html, css, js" />
     <meta name="author" content="Дмитрий Яковлевич" />
@@ -59,27 +59,58 @@
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="profile__edit" class="profile__edit">
-          <input type="text" name="fio" class="popup__input" placeholder="ФИО" />
-          <input type="text" name="profession" class="popup__input" placeholder="Профессия" />
+          <input
+            type="text"
+            name="fio"
+            class="popup__input"
+            placeholder="ФИО"
+          />
+          <input
+            type="text"
+            name="profession"
+            class="popup__input"
+            placeholder="Профессия"
+          />
           <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>
     </div>
-    
+
     <div class="popup popup-card">
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Новое место</h3>
         <form name="card__insert" class="card__insert">
-          <input type="text" name="card_name" class="popup__input" placeholder="Название" />
-          <input type="text" name="card_link" class="popup__input" placeholder="Ссылка на картинку" />
+          <input
+            type="text"
+            name="card_name"
+            class="popup__input"
+            placeholder="Название"
+          />
+          <input
+            type="text"
+            name="card_link"
+            class="popup__input"
+            placeholder="Ссылка на картинку"
+          />
           <button type="submit" class="popup__submit">Создать</button>
         </form>
       </div>
     </div>
+
+    <div class="popup popup-image">
+      <div class="popup__container-img">
+        <button class="popup__close-button" type="button"></button>
+        <figure class="popup__figure">
+          <img class="popup__img" src="#" alt="#" />
+          <figcaption class="popup__img-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
     <template class="card-template">
       <li class="card">
-        <img src="" alt="" class="card__img" />
+        <img src="#" alt="#" class="card__img" />
         <h2 class="card__title"></h2>
         <button class="card__like" type="button"></button>
         <button class="card__trash" type="button"></button>
