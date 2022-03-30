@@ -58,19 +58,29 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form name="profile__edit" class="popup__profile-edit">
+        <form name="profile__edit" class="popup__profile-edit popup__form" novalidate>
           <input
             type="text"
+            id="fio"
             name="fio"
             class="popup__input"
             placeholder="ФИО"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="popup-error fio-error"></span>
           <input
             type="text"
+            id="profession"
             name="profession"
             class="popup__input"
             placeholder="Профессия"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span class="popup-error profession-error"></span>
           <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>
@@ -80,19 +90,27 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form name="card__insert" class="popup__card-insert">
+        <form name="card__insert" class="popup__card-insert popup__form" novalidate>
           <input
             type="text"
+            id="card-name"
             name="card_name"
             class="popup__input"
             placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required 
           />
+          <span class="popup-error card-name-error"></span>
           <input
-            type="text"
+            type="url"
+            id="card-link"
             name="card_link"
             class="popup__input"
             placeholder="Ссылка на картинку"
+            required
           />
+          <span class="popup-error card-link-error"></span>
           <button type="submit" class="popup__submit">Создать</button>
         </form>
       </div>
@@ -116,6 +134,7 @@
         <button class="card__trash" type="button"></button>
       </li>
     </template>
+    <script src="./js/validation.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
