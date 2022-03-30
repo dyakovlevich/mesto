@@ -76,9 +76,7 @@ const setEventListeners = (
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      console.log(inputElement);
       checkInputValidity(formElement, inputElement, rest);
-
       // чтобы проверять его при изменении любого из полей
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
