@@ -58,7 +58,7 @@ const imgCaption = document.querySelector(".popup__img-caption");
 function openProfilePopup() {
   profileFioInput.value = profileFio.textContent;
   profileProfessionInput.value = profileProfession.textContent;
-  togglePopup(popupProfile);
+  openPopup(popupProfile);
 }
 
 function openImgPopup(img) {
@@ -67,18 +67,45 @@ function openImgPopup(img) {
   imgCaption.textContent = imgAlt;
   imgLink.setAttribute("src", imgSrc);
   imgLink.setAttribute("alt", imgAlt);
-  togglePopup(popupImg);
+  openPopup(popupImg);
 }
 
-function togglePopup(popup) {
-  popup.classList.toggle("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", handlePopupEscKeydown);
+  popup.addEventListener("click", handlePopupOverlayClick);
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", handlePopupEscKeydown);
+  popup.removeEventListener("click", handlePopupOverlayClick);
+}
+
+function handlePopupOverlayClick(evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+  // console.log(evt.target);
+  // console.log(evt.currentTarget);
+  if (
+    evt.target.classList.contains("popup_opened") ||
+    evt.target.classList.contains("popup__close-button")
+  ) {
+    closePopup(openedPopup);
+  }
+}
+
+function handlePopupEscKeydown(evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(openedPopup);
+  }
 }
 
 function submitProfileForm(evt) {
   evt.preventDefault();
   profileFio.textContent = profileFioInput.value.trim();
   profileProfession.textContent = profileProfessionInput.value.trim();
-  togglePopup(popupProfile);
+  closePopup(popupProfile);
   profileEditForm.reset();
 }
 
@@ -89,7 +116,7 @@ function submitAddCardForm(evt) {
     link: cardAddLinkInput.value,
   };
   renderCard(data);
-  togglePopup(popupAddCard);
+  closePopup(popupAddCard);
   cardAddForm.reset();
 }
 
@@ -132,15 +159,8 @@ function likeCard(cardLike) {
 profileEditButton.addEventListener("click", openProfilePopup);
 profileEditForm.addEventListener("submit", submitProfileForm);
 cardAddButton.addEventListener("click", function () {
-  togglePopup(popupAddCard);
+  openPopup(popupAddCard);
 });
 cardAddForm.addEventListener("submit", submitAddCardForm);
-
-popupCloseButtons.forEach((closeBtn) => {
-  const popup = closeBtn.closest(".popup");
-  closeBtn.addEventListener("click", function () {
-    togglePopup(popup);
-  });
-});
 
 initialCards.map(renderCard);
