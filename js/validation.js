@@ -93,7 +93,6 @@ const enableValidation = ({ formSelector, ...rest }) => {
     // formElement.addEventListener('submit', function (evt) {
     //   evt.preventDefault();
     // });
-    console.log(formElement);
     setEventListeners(formElement, rest);
   });
 };
