@@ -57,6 +57,7 @@ function submitProfileForm(evt) {
   profileFio.textContent = profileFioInput.value.trim();
   profileProfession.textContent = profileProfessionInput.value.trim();
   closePopup(popupProfile);
+  disableFormSubmit(evt.target.name);
 }
 
 function submitAddCardForm(evt) {
@@ -69,7 +70,11 @@ function submitAddCardForm(evt) {
   cardsContainer.prepend(cardElement);
   closePopup(popupAddCard);
   cardAddForm.reset();
-  formValidators[evt.target.name].disableButton();
+  disableFormSubmit(evt.target.name);
+}
+
+function disableFormSubmit(name) {
+  formValidators[name].disableButton();
 }
 
 profileEditButton.addEventListener("click", openProfilePopup);
