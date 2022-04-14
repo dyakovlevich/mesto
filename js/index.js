@@ -1,10 +1,9 @@
-import { initialCards } from "./initialcards.js";
-import { Card } from "./card.js";
-import { FormValidator } from "./validation.js";
+import { initialCards } from "./initialCards.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { openPopup, closePopup, handlePopupOverlayClick, handlePopupEscKeydown } from "./utils.js";
 
 const cardsContainer = document.querySelector(".cards");
-const popupCloseButtons = document.querySelectorAll(".popup__close-button");
-
 const popupProfile = document.querySelector(".popup-profile");
 
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -28,31 +27,6 @@ function openProfilePopup() {
   openPopup(popupProfile);
 }
 
-export function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", handlePopupEscKeydown);
-  popup.addEventListener("mousedown", handlePopupOverlayClick);
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", handlePopupEscKeydown);
-  popup.removeEventListener("mousedown", handlePopupOverlayClick);
-}
-
-function handlePopupOverlayClick(evt) {
-  if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-button")) {
-    closePopup(evt.currentTarget);
-  }
-}
-
-function handlePopupEscKeydown(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
 function submitProfileForm(evt) {
   profileFio.textContent = profileFioInput.value.trim();
   profileProfession.textContent = profileProfessionInput.value.trim();
@@ -65,9 +39,7 @@ function submitAddCardForm(evt) {
     name: cardAddNameInput.value,
     link: cardAddLinkInput.value,
   };
-  const card = new Card(data, ".card-template");
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  addCard(data);
   closePopup(popupAddCard);
   cardAddForm.reset();
   disableFormSubmit(evt.target.name);
@@ -75,6 +47,12 @@ function submitAddCardForm(evt) {
 
 function disableFormSubmit(name) {
   formValidators[name].disableButton();
+}
+
+function addCard(data){
+  const card = new Card(data, ".card-template");
+  const cardElement = card.generateCard();
+  cardsContainer.prepend(cardElement);
 }
 
 profileEditButton.addEventListener("click", openProfilePopup);
@@ -85,9 +63,7 @@ cardAddButton.addEventListener("click", function () {
 cardAddForm.addEventListener("submit", submitAddCardForm);
 
 initialCards.forEach((item) => {
-  const card = new Card(item, ".card-template");
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  addCard(item);
 });
 
 const enableValidation = (data) => {

@@ -1,4 +1,4 @@
-import {openPopup} from './index.js';
+import { openPopup, closePopup, handlePopupOverlayClick, handlePopupEscKeydown } from "./utils.js";
 export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
