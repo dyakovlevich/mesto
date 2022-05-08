@@ -1,16 +1,14 @@
-export class FormValidator {
-  constructor(data, formElement) {      
+export default class FormValidator {
+  constructor(data, formSelector) {      
       this._inputSelector = data.inputSelector;
       this._submitButtonSelector = data.submitButtonSelector;
       this._inactiveButtonClass = data.inactiveButtonClass;
       this._inputErrorClass = data.inputErrorClass;
       this._errorClass = data.errorClass;
       
-      this._form = formElement;
+      this._form = document.querySelector(formSelector);
       this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
       this._buttonElement = this._form.querySelector(this._submitButtonSelector);
-      
-      // console.log(this);
   }
   
   //Включение валидации

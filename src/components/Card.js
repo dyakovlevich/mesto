@@ -1,10 +1,9 @@
-import { openPopup, closePopup, handlePopupOverlayClick, handlePopupEscKeydown } from "./utils.js";
-
-export class Card {
-    constructor(data, cardSelector) {
+export default class Card {
+    constructor({data, handleCardClick}, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
     
     _getTemplate() {
@@ -39,7 +38,7 @@ export class Card {
       
       //Слушатель открытия попапа
       this._element.querySelector(".card__img").addEventListener('click', () => {
-        this._handleOpenPopupClick();
+        this._handleCardClick(this._name, this._link);
       });
     }
     
@@ -51,19 +50,5 @@ export class Card {
     //Действие при удалении
     _handleRemoveCardClick() {
       this._element.remove();
-    }
-    
-    //Действие при клике на карточку
-    _handleOpenPopupClick() {
-      const popupImg = document.querySelector(".popup-image");
-      const imgLink = document.querySelector(".popup__img");
-      const imgCaption = document.querySelector(".popup__img-caption");
-
-      const imgSrc = this._link;
-      const imgAlt = this._name;
-      imgCaption.textContent = imgAlt;
-      imgLink.setAttribute("src", imgSrc);
-      imgLink.setAttribute("alt", imgAlt);
-      openPopup(popupImg);
     }
 }
