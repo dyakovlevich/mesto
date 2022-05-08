@@ -1,7 +1,7 @@
 import './index.css';
 
 import { initialCards } from "../utils/initialCards.js";
-import {profileEditButton, profileFioInput, profileProfessionInput, cardAddButton, formValidatorObj} from "../utils/constants.js";
+import {profileEditForm, cardAddForm, profileEditButton, profileFioInput, profileProfessionInput, cardAddButton, formValidatorObj} from "../utils/constants.js";
 
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -12,10 +12,10 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 
 
-const formProfileValidator = new FormValidator(formValidatorObj, '.popup__profile-edit');
+const formProfileValidator = new FormValidator(formValidatorObj, profileEditForm);
 formProfileValidator.enableValidation();
 
-const formCardValidator = new FormValidator(formValidatorObj, '.popup__card-insert');
+const formCardValidator = new FormValidator(formValidatorObj, cardAddForm);
 formCardValidator.enableValidation();
 
 
@@ -23,7 +23,6 @@ formCardValidator.enableValidation();
 const userInfo = new UserInfo({userName: '.profile__fio', userProfession: '.profile__profession'});
 const popupProfile = new PopupWithForm('.popup-profile', (data) => {
   userInfo.setUserInfo(data);
-  formProfileValidator.disableButton();
 });
 popupProfile.setEventListeners();
 
@@ -41,8 +40,7 @@ profileEditButton.addEventListener("click", openProfilePopup);
 
 
 const popupAddCard = new PopupWithForm('.popup-card', (data) => {
-  createCards.addItem(addCard(data));
-  formCardValidator.disableButton();
+  createCards.addItem(createCard(data));
 });
 popupAddCard.setEventListeners();
 
@@ -70,11 +68,19 @@ function handleCardClick(caption, link) {
   popupImage.open(caption, link);
 };
 
-function addCard(data){
+
+const createCards = new Section({items: initialCards,renderer: cardRenderer}, '.cards');
+
+function createCard(data){
   const card = new Card({data, handleCardClick}, ".card-template");
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-const createCards = new Section({items: initialCards,renderer: addCard}, '.cards');
+function cardRenderer(data){
+  const createdCard = createCard(data);
+  createCards.addItem(createdCard);
+}
+
 createCards.renderItems();
+

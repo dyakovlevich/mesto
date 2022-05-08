@@ -1,3 +1,5 @@
+export const profileEditForm = document.querySelector('.popup__profile-edit');
+export const cardAddForm = document.querySelector('.popup__card-insert');
 export const profileEditButton = document.querySelector(".profile__edit-button");
 export const profileFioInput = document.querySelector(".popup__profile-edit input[name=fio]");
 export const profileProfessionInput = document.querySelector(".popup__profile-edit input[name=profession");

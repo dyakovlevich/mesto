@@ -13,21 +13,22 @@ export default class Card {
     
     generateCard() {
       this._element = this._getTemplate();
+      this._cardImg = this._element.querySelector(".card__img");
+      this._cardLike = this._element.querySelector(".card__like");
       this._setEventListeners();
 
-      const _cardImg = this._element.querySelector(".card__img");
       const _cardTitle = this._element.querySelector(".card__title");
 
       _cardTitle.textContent = this._name;
-      _cardImg.setAttribute("src", this._link);
-      _cardImg.setAttribute("alt", this._name);  
+      this._cardImg.setAttribute("src", this._link);
+      this._cardImg.setAttribute("alt", this._name);  
       
       return this._element;
     } 
 
     _setEventListeners() {
       //Слушетель лайка
-      this._element.querySelector(".card__like").addEventListener('click', () => {
+      this._cardLike.addEventListener('click', () => {
         this._handleLikeClick();
       });
       
@@ -37,18 +38,19 @@ export default class Card {
       });
       
       //Слушатель открытия попапа
-      this._element.querySelector(".card__img").addEventListener('click', () => {
+      this._cardImg.addEventListener('click', () => {
         this._handleCardClick(this._name, this._link);
       });
     }
     
     //Действие при лайке
     _handleLikeClick() {
-      this._element.querySelector(".card__like").classList.toggle("card__like_active");
+      this._cardLike.classList.toggle("card__like_active");
     }
     
     //Действие при удалении
     _handleRemoveCardClick() {
       this._element.remove();
+      this._element = null;
     }
 }
