@@ -9,7 +9,6 @@ export default class Api {
   }
 
   getCards() {
-    // console.log(this._headers);
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
@@ -17,7 +16,6 @@ export default class Api {
   }
 
   getUserInfo() {
-    // console.log(this._headers);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,

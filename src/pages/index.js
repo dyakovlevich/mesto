@@ -60,7 +60,6 @@ api.getInitialData().then(resp => {
   userInfo.setHtmlUserInfo(userInitialData);
   
   //Карточки
-  //console.log(cardsInitialData);
   
   //Сортировка по времени по убыванию
   cardsInitialData.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
@@ -79,7 +78,6 @@ api.getInitialData().then(resp => {
           popupImage.open(card._name, card._link);
         },
         handleLikeClick: (card) => {
-          //console.log(card);
           const likeAction = (card._ownerLiked)? api.deleteLike(card._cardId):api.setLike(card._cardId);
           
           likeAction.then((resp) => {
@@ -101,9 +99,7 @@ api.getInitialData().then(resp => {
   }
   
   const popupAddCard = new PopupWithForm('.popup-card', (data) => {
-    console.log(data);
     api.addCard(data).then((resp) => {
-      console.log(resp);
       createCards.addItem(createCard(resp));
     })
     .catch((err) => alert(err))
@@ -158,7 +154,6 @@ avatarEditButton.addEventListener("click", () => popupAvatar.open());
 
 //Попап подтверждение удаления карточки 
 const popupCardDelete = new PopupCardDelete('.popup-delete', (data) => {
-  console.log(data);
   api.deleteCard(data._cardId).then(() => {
     data._handleRemoveCard();
     popupCardDelete.close();
