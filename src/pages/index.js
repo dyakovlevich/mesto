@@ -1,6 +1,5 @@
 import './index.css';
 
-//import { initialCards } from "../utils/initialCards.js";
 import {avatarEditButton, avatarEditForm, profileEditForm, cardAddForm, profileEditButton, profileNameInput, profileAboutInput, cardAddButton, formValidatorObj} from "../utils/constants.js";
 
 import Api from "../components/Api.js";
@@ -58,9 +57,7 @@ api.getInitialData().then(resp => {
   //Пользователь  
   const userId = userInitialData._id;
   userInfo.setHtmlUserInfo(userInitialData);
-  
-  //Карточки
-  
+    
   //Сортировка по времени по убыванию
   cardsInitialData.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
   
@@ -83,11 +80,7 @@ api.getInitialData().then(resp => {
           likeAction.then((resp) => {
             card._handlerLikes(resp.likes);
           })
-          .catch((err) => alert(err))
-          .finally(() => {
-            // закрываем loader
-            // renderLoading(false);
-          }); 
+          .catch((err) => alert(err)); 
         },
         handleCardRemoveClick: (card) => {
           popupCardDelete.open(card);
@@ -105,8 +98,6 @@ api.getInitialData().then(resp => {
     .catch((err) => alert(err))
     .finally(() => {
       popupAddCard.close();
-      // закрываем loader
-      // renderLoading(false);
     }); 
   });
   popupAddCard.setEventListeners();
@@ -118,11 +109,7 @@ api.getInitialData().then(resp => {
   
   createCards.renderItems();
 })
-.catch((err) => alert(err))
-.finally(() => {
-  // закрываем loader
-  // renderLoading(false);
-});
+.catch((err) => alert(err));
 
 
 const formProfileValidator = new FormValidator(formValidatorObj, profileEditForm);
@@ -133,10 +120,6 @@ formCardValidator.enableValidation();
 
 const formAvatarValidator = new FormValidator(formValidatorObj, avatarEditForm);
 formAvatarValidator.enableValidation();
-
-
-
-
 
 
 function openProfilePopup() {
@@ -150,14 +133,12 @@ profileEditButton.addEventListener("click", openProfilePopup);
 
 avatarEditButton.addEventListener("click", () => popupAvatar.open());
 
-
-
 //Попап подтверждение удаления карточки 
 const popupCardDelete = new PopupCardDelete('.popup-delete', (data) => {
   api.deleteCard(data._cardId).then(() => {
     data._handleRemoveCard();
     popupCardDelete.close();
-  }); 
+  }).catch((err) => alert(err)); 
 });
 popupCardDelete.setEventListeners();
 
