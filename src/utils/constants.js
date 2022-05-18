@@ -1,9 +1,14 @@
-export const profileEditForm = document.querySelector('.popup__profile-edit');
+
 export const cardAddForm = document.querySelector('.popup__card-insert');
-export const profileEditButton = document.querySelector(".profile__edit-button");
-export const profileFioInput = document.querySelector(".popup__profile-edit input[name=fio]");
-export const profileProfessionInput = document.querySelector(".popup__profile-edit input[name=profession");
 export const cardAddButton = document.querySelector(".profile__add-button");
+export const profileEditForm = document.querySelector('.popup__profile-edit');
+export const profileEditButton = document.querySelector(".profile__edit-button");
+export const profileNameInput = document.querySelector(".popup__profile-edit input[name=name]");
+export const profileAboutInput = document.querySelector(".popup__profile-edit input[name=about");
+
+
+export const avatarEditForm = document.querySelector('.popup__avatar-edit');
+export const avatarEditButton = document.querySelector('.profile__avatar-edit');
 
 export const formValidatorObj = {
   inputSelector: ".popup__input",

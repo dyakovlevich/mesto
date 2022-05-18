@@ -1,11 +1,12 @@
 .card {
   max-width: 100%;
   display: grid;
-  padding-bottom: 25px;
+  padding-bottom: 22px;
   grid-template-columns: 1fr 62px;
   grid-template-areas:
     "img img"
-    "title like";
+    "title like"
+    "title like_count";
   align-items: center;
   justify-items: start;
   color: black;
