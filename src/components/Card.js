@@ -32,7 +32,7 @@ export default class Card {
     this._cardImg.setAttribute("alt", this._name);
     
     this._checkDeleteAvailable();
-    this._handlerLikes(this._likesArray);
+    this.handlerLikes(this._likesArray);
     this._setEventListeners();
 
     return this._element;
@@ -57,7 +57,7 @@ export default class Card {
     });
   }
 
-  _handlerLikes(likesArray){
+  handlerLikes(likesArray){
     this._ownerLiked = false;
     this._cardLike.classList.remove("card__like_active");
     likesArray.forEach((item) => {
@@ -70,7 +70,7 @@ export default class Card {
   }
   
   //Действие при удалении
-  _handleRemoveCard() {
+  handleRemoveCard() {
     this._element.remove();
     this._element = null;
   }
